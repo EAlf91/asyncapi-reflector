@@ -1,0 +1,50 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.4'
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'java'
+}
+
+group = 'de.otto'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	maven {url "https://jitpack.io"}
+	flatDir {
+		dirs 'libs'
+	}
+
+}
+
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//razorshark lib
+	implementation files('libs/springwolf-sqs-plugin-0.4.0-all.jar')
+
+	// Provides the UI - optional (recommended)
+	// https://mvnrepository.com/artifact/io.github.springwolf/springwolf-core
+	// https://mvnrepository.com/artifact/io.github.springwolf/springwolf-core
+	implementation 'io.github.springwolf:springwolf-core:0.7.0'
+	implementation 'io.github.springwolf:springwolf-ui:0.5.0'
+
+	//TODO: These dependencies need to be shipped by the plugin
+	// https://mvnrepository.com/artifact/org.springframework.amqp/spring-amqp
+	//implementation 'org.springframework.amqp:spring-amqp:2.4.7'
+	// https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit
+	implementation 'org.springframework.amqp:spring-rabbit'
+
+
+	//swagger
+	implementation 'io.swagger.core.v3:swagger-core:2.2.0'
+	//aws messageing
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws-messaging', version: '2.2.6.RELEASE'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
