@@ -4,6 +4,7 @@ package de.otto.asyncapidemo2.Controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.otto.asyncapidemo2.asyncreflector.CustomApiSerializerService;
 import de.otto.asyncapidemo2.asyncreflector.Publisher;
+import de.otto.asyncapidemo2.asyncreflector.Subscriber;
 import de.otto.asyncapidemo2.dto.AnotherPayloadDto;
 import de.otto.asyncapidemo2.dto.DunningDTO;
 import io.github.stavshamir.springwolf.asyncapi.AsyncApiSerializerService;
@@ -40,5 +41,12 @@ public class AsyncApiControll {
     public void test(AnotherPayloadDto dunningDTO){
         System.out.println(dunningDTO);
     }
+
+    @Subscriber("${test.queue2}")
+    public void test2(AnotherPayloadDto dunningDTO){
+        System.out.println(dunningDTO);
+    }
+
+
 
 }
